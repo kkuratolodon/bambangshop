@@ -67,9 +67,9 @@ You can install Postman via this website: https://www.postman.com/downloads/
 -   **STAGE 3: Implement notification mechanism**
     -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [X] Commit: `Implement publish function in Program service and Program controller.`
-    -   [X] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -103,11 +103,16 @@ This is the place for you to write reflections:
    
     Postman sangat membantu dalam pengujian API dengan memungkinkan pengiriman permintaan HTTP dan penerimaan respons secara langsung. Fitur yang menurut saya paling berguna adalah kemampuan untuk menyimpan *request* dalam *collection* dan menggunakan *environment variable*, yang memudahkan pengujian di berbagai *environment*. Selain itu, otomatisasi pengujian melalui skrip pra-pengujian dan pengujian pasca-pengujian membantu memastikan bahwa API berfungsi sebagaimana mestinya sebelum peluncuran. Fitur-fitur ini sangat relevan untuk mempercepat proses pengembangan dan memastikan kualitas dalam proyek kelompok dan proyek rekayasa perangkat lunak masa depan.
 
-
-
-
-
-
-
-
 #### Reflection Publisher-3
+1. Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+    
+    Dalam tutorial ini, kita menggunakan **Push Model** untuk sistem notifikasi, yang diimplementasikan melalui mekanisme di mana `NotificationService` otomatis mengirimkan notifikasi kepada semua **Subscriber** yang berlangganan tipe produk tertentu setiap kali ada perubahan seperti pembuatan, penghapusan, atau penerbitan produk baru. `NotificationService` melakukan ini dengan menjelajahi daftar **Subscriber** dan segera mengirimkan notifikasi ketika ada perubahan pada produk. Pendekatan ini memastikan bahwa **Subscriber** mendapatkan informasi terbaru secara otomatis, tanpa perlu mengambil atau mengecek notifikasi secara manual.
+
+2. What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+   
+   **Pull Model** dalam sistem notifikasi memungkinkan **Subscriber** untuk mengakses informasi sesuai kebutuhan tanpa harus berbagi data pribadi mereka dengan **Publisher**. Kelebihan model ini adalah **Subscriber** dapat mengontrol dan memilih informasi yang relevan untuk diakses kapan saja, memberikan fleksibilitas dalam memilih data. Namun, model ini juga memiliki kekurangan karena dapat meningkatkan *network traffic* dan *latency* karena **Subscriber** harus secara aktif memeriksa pembaruan dari **Publisher**. Selain itu, **Subscriber** perlu memiliki pemahaman yang baik tentang struktur data yang diawasi untuk dapat membuat keputusan yang tepat tentang data mana yang akan diambil dan kapan harus mengambilnya.
+
+3. Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+   
+   Tanpa penggunaan *multi-threading*, proses pengiriman notifikasi akan berlangsung secara berurutan dan sinkron, yang bisa memperlambat proses dan berpotensi merusak kualitas pengalaman pengguna. Dalam skenario ini, `NotificationService` menghadapi keterlambatan yang signifikan karena perlu menyelesaikan pengiriman notifikasi ke satu **Subscriber** sebelum beralih ke yang berikutnya. Hal ini dapat menyebabkan kemacetan atau *bottleneck* dalam sistem, khususnya bila jumlah **Subscriber** sangat banyak, sehingga menghambat efisiensi pengiriman notifikasi.
+
