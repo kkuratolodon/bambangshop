@@ -63,7 +63,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement subscribe function in Notification controller.`
     -   [x] Commit: `Implement unsubscribe function in Notification service.`
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
@@ -91,5 +91,23 @@ This is the place for you to write reflections:
 
 
 #### Reflection Publisher-2
+1. In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+   
+   Dalam pola Model-View-Controller (MVC), Model secara tradisional menggabungkan logika bisnis dan penyimpanan data. Namun, berdasarkan SOLID *principle*,  **S**ingle Responsibility Principle, penting untuk memisahkan "Service" dan "Repository" dari Model. Repository bertanggung jawab secara eksklusif untuk interaksi dengan database, menyederhanakan akses data dan isolasi query dari logika bisnis, sehingga membuat sistem lebih modular dan mudah diuji. Service, di sisi lain, mengelola logika bisnis dan beroperasi sebagai perantara antara UI (View) dan data (Repository), memungkinkan pemisahan yang jelas antara cara data diakses dan bagaimana data diproses atau diubah. Dengan memisahkan ini, aplikasi tidak hanya menjadi lebih terorganisir tetapi juga lebih mudah untuk dikelola dan dikembangkan karena tiap komponen memiliki tanggung jawab yang jelas dan terbatas.
+
+2. What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
+   
+    Jika hanya menggunakan Model dalam kerangka MVC tanpa memisahkan lapisan Service dan Repository, setiap Model akan menjadi sangat kompleks dan tidak *maintanable*. Dalam skenario ini, setiap model akan mengelola data serta logika bisnis yang berkaitan, sehingga mencampurkan pengelolaan data dengan aturan bisnis dan output, yang menyebabkan kode yang sulit dibaca dan di*maintain*.
+
+3. Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
+   
+    Postman sangat membantu dalam pengujian API dengan memungkinkan pengiriman permintaan HTTP dan penerimaan respons secara langsung. Fitur yang menurut saya paling berguna adalah kemampuan untuk menyimpan *request* dalam *collection* dan menggunakan *environment variable*, yang memudahkan pengujian di berbagai *environment*. Selain itu, otomatisasi pengujian melalui skrip pra-pengujian dan pengujian pasca-pengujian membantu memastikan bahwa API berfungsi sebagaimana mestinya sebelum peluncuran. Fitur-fitur ini sangat relevan untuk mempercepat proses pengembangan dan memastikan kualitas dalam proyek kelompok dan proyek rekayasa perangkat lunak masa depan.
+
+
+
+
+
+
+
 
 #### Reflection Publisher-3
